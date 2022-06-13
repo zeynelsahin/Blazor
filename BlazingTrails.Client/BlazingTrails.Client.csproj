@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.4" PrivateAssets="all" />
+        <PackageReference Include="MudBlazor" Version="6.0.9" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="wwwroot\Document\Introduction.docx" />
+      <None Include="wwwroot\Document\Introduction.txt" />
+      <None Include="wwwroot\Document\IntroductionTry.txt" />
+      <None Include="wwwroot\Document\Layout.txt" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Features\Layout\MainLayout.razor" />
+    </ItemGroup>
+
+
+</Project>

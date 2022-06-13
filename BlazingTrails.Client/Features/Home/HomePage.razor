@@ -1,0 +1,33 @@
+﻿@page "/"
+@inject HttpClient HttpClient
+<PageTitle>Blazing Trails</PageTitle>
+
+@if (_trails == null)
+{
+    <MudPaper Class="d-flex justify-center flex-grow-1 gap-4" Elevation="0">
+        <MudProgressCircular Color="Color.Tertiary" Size="Size.Large" Indeterminate="true"/>
+    </MudPaper>
+}
+else
+{
+    <MudGrid Spacing="3">
+        <DisplayTrails Trails="@_trails"></DisplayTrails>
+    </MudGrid>
+}
+
+@code
+{
+    private IEnumerable<Trail>? _trails;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _trails = await HttpClient.GetFromJsonAsync<IEnumerable<Trail>>("trails/trail-data.json");
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"There was a problem loading trail data: {exception.Message}");
+        }
+    }
+}

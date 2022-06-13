@@ -1,0 +1,21 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudLayout>
+    <MudAppBar Fixed="false" Color="Color.Tertiary" Elevation="0">
+        <MudLink Href="/" Underline="Underline.None">
+            <MudText Style="color: white" Typo="Typo.h5" Class="ml-3">Blazing Trails</MudText>
+        </MudLink>
+        <MudSpacer/>
+        <MudIconButton Icon="@Icons.Custom.Brands.MudBlazor" Color="Color.Inherit" Link="https://mudblazor.com/" Target="_blank"/>
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/MudBlazingTrails.Client/MudBlazingTrails.Client/" Target="_blank"/>
+    </MudAppBar>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
