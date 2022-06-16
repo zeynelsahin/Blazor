@@ -1,0 +1,31 @@
+﻿@inherits TrailDetailBase
+@if (ActiveTrail != null)
+{
+    <MudDrawer @bind-Open="@Open" Width="500px" Anchor="Anchor" Elevation="3"  Variant="@DrawerVariant.Temporary">
+        <MudCard Style="height: 100%" Elevation="4">
+
+            <MudCardMedia class="img1" Image="@ActiveTrail.Image" Height="300"/><br/>
+            <MudCardContent>
+                <MudText Typo="Typo.h4">
+                    @ActiveTrail.Name
+                </MudText><br/>
+                <MudText Typo="Typo.body2" Style="font-size: 15px;">
+                    <MudIcon Size="Size.Small" Icon="@Icons.Filled.LocationOn"></MudIcon>
+                    @ActiveTrail.Location
+                </MudText><br/>
+                <MudText Typo="Typo.body2">Time:@ActiveTrail.TimeFormatted &nbsp;&nbsp;&nbsp; Lenght:@ActiveTrail.Length km</MudText><br/>
+                <MudText Typo="Typo.body2">@ActiveTrail.Description</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                    <MudButton @onclick="CloseDrawer"  StartIcon="@Icons.Filled.Close" Variant="Variant.Outlined">Close</MudButton>
+            </MudCardActions>
+        
+
+        </MudCard>
+    </MudDrawer>
+}
+
+
+@code{
+
+}

@@ -2,6 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Client", "BlazingTrails.Client\BlazingTrails.Client.csproj", "{137C4A32-A6D5-4CAD-91A3-8EE7D7333FD2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{4C2BCA90-E03E-4C87-A6E7-0205E5C47BF8}"
+	ProjectSection(SolutionItems) = preProject
+		Document\IntroductionTry.txt = Document\IntroductionTry.txt
+		Document\AppStarted.docx = Document\AppStarted.docx
+		Document\Component.docx = Document\Component.docx
+		Document\Introduction.docx = Document\Introduction.docx
+		Document\Layout.txt = Document\Layout.txt
+		Document\Routing.docx = Document\Routing.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +22,7 @@ Global
 		{137C4A32-A6D5-4CAD-91A3-8EE7D7333FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{137C4A32-A6D5-4CAD-91A3-8EE7D7333FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{137C4A32-A6D5-4CAD-91A3-8EE7D7333FD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal

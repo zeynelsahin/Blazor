@@ -18,13 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="wwwroot\Document\Introduction.docx" />
-      <None Include="wwwroot\Document\Introduction.txt" />
-      <None Include="wwwroot\Document\IntroductionTry.txt" />
-      <None Include="wwwroot\Document\Layout.txt" />
-    </ItemGroup>
-
-    <ItemGroup>
       <AdditionalFiles Include="Features\Layout\MainLayout.razor" />
     </ItemGroup>
 

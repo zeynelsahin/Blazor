@@ -1,0 +1,17 @@
+﻿@inherits TrailSearchBase
+ <MudContainer MaxWidth="MaxWidth.Large">
+       <MudGrid>
+    <MudItem xs="12" >
+        <MudText Align="Align.Center" Color="Color.Tertiary" Typo="Typo.h3">Welcome to Blazing Trails</MudText>
+    </MudItem>
+    <MudItem xs="12"> 
+        <MudText  Align="Align.Center"  Typo="Typo.h6">Find the most beautiful hiking trails using our blazing fast search!</MudText>
+    </MudItem>
+    <MudItem xs="12">
+        <MudTextField    @bind-Value="@SearchTerm"  AdornmentColor="Color.Tertiary" OnKeyDown="SearchForTrail" Immediate="true" Variant="Variant.Outlined"  Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.Search"/>
+    </MudItem>
+</MudGrid>
+  </MudContainer>
+@code {
+    
+}
