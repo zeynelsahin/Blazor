@@ -1,5 +1,5 @@
 ﻿@page "/search/{SearchTerm}"
-@page "/search/{SearchTerm}/maxlenght/{Maxlenght:int}"
+@page "/search/{SearchTerm}/maxlenght/{MaxLenght:int}"
 @inherits SearchPageBase
 
 <MudBreadcrumbs Items="Items"></MudBreadcrumbs>
@@ -17,7 +17,7 @@ else
             <MudText  Typo="Typo.h5">Search result for @SearchTerm</MudText>
         </MudItem>
         <MudItem xs="12" md="9" lg="10">
-            <SearchFilter></SearchFilter>
+            <SearchFilter SearchTerm="@SearchTerm"></SearchFilter>
         </MudItem>
         <TrailDetail Trail="SelectedTrail"></TrailDetail>
         <br/>

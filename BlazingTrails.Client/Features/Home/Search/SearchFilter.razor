@@ -1,10 +1,11 @@
 ﻿@inherits SearchFilterBase
 <MudGrid Justify="Justify.FlexEnd">
-    <MudItem xs="8" md="9" lg="10">
-        <MudTextField Immediate="true" @bind-Value="@MaxLenght" Label="Max lenght" Variant="Variant.Outlined"/>
+    <MudItem Class="d-flex justify-end flex-grow-1 gap-4 align-self-center">
+        <MudTextField Immediate="true" @bind-Value="@MaxLenght" Label="Max Lenght" Variant="Variant.Outlined"/>
+        <MudTextField Immediate="true" @bind-Value="@MaxTime" Label="Max Time" Variant="Variant.Outlined"/>
     </MudItem>
-    <MudItem xs="4" md="3" lg="2" Class="d-flex justify-end flex-grow-1 gap-4 align-self-center">
-        <MudButton Variant="Variant.Outlined" Size="Size.Large" Color="Color.Primary">Filter</MudButton>
-        <MudButton Variant="Variant.Outlined" Size="Size.Large" Color="Color.Secondary">Clear</MudButton>
+    <MudItem Class="justify-center  align-self-center">
+        <MudButton Variant="Variant.Outlined" Class="" Size="Size.Large" Color="Color.Primary" @onclick="FilterSearchResults">Filter</MudButton>
+        <MudButton Variant="Variant.Outlined" Size="Size.Large" Color="Color.Secondary" @onclick="ClearSearchFilter">Clear</MudButton>
     </MudItem>
 </MudGrid>
