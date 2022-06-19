@@ -1,0 +1,16 @@
+﻿@inherits FormSectionBase
+<MudPaper Class="pa-8 ma-2" Elevation="3">
+    <MudGrid>
+        <MudItem xs="12" md="6" lg="4">
+            <MudText Typo="Typo.h4">@Title</MudText>
+            <MudText Typo="Typo.body1"> @HelpText </MudText>
+        </MudItem>
+        <MudItem xs="12" md="6" lg="8">
+            <MudCard Elevation="0">
+            <MudCardContent>
+                @ChildContent
+            </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
