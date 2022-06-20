@@ -38,24 +38,27 @@
             routeInstruction.Stage = i;
             <MudForm Model="@routeInstruction" Validation="@(RouteInstructionValidator.ValidateValue)" ValidationDelay="0">
 
-        <MudGrid>
-            <MudItem xs="2" lg="1">
-                <MudTextField @bind-Value="@routeInstruction.Stage" For="@(()=>routeInstruction.Stage)" Label="Stage" ReadOnly="true" Variant="Variant.Text"/>
-            </MudItem>
-            <MudItem xs="8" lg="10">
-                <MudTextField  @bind-Value="@routeInstruction.Description"
-                               For="@(() => @routeInstruction.Description)"
-                               Immediate="true"
-                               Label="Description"></MudTextField>
-            </MudItem>
-            <MudItem xs="2" lg="1">
-                <MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Large" OnClick="() => Trail.Route.Remove(routeInstruction)" aria-label="delete"></MudIconButton>
-            </MudItem>
-        </MudGrid>
-          </MudForm>
+                <MudGrid>
+                    <MudItem xs="2" lg="1">
+                        <MudTextField @bind-Value="@routeInstruction.Stage" For="@(() => routeInstruction.Stage)" Label="Stage" ReadOnly="true" Variant="Variant.Text"/>
+                    </MudItem>
+                    <MudItem xs="8" lg="10">
+                        <MudTextField @bind-Value="@routeInstruction.Description"
+                                      For="@(() => @routeInstruction.Description)"
+                                      Immediate="true"
+                                      Label="Description">
+                        </MudTextField>
+                    </MudItem>
+                    <MudItem xs="2" lg="1">
+                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Large" OnClick="() => Trail.Route.Remove(routeInstruction)" aria-label="delete"></MudIconButton>
+                    </MudItem>
+                </MudGrid>
+            </MudForm>
         }
-      
-        <MudButton OnClick="() => Trail.Route.Add(new TrailDto.RouteInstruction())" Variant="Variant.Filled" Color="Color.Success">Add Instuction</MudButton>
+
+        <MudCardActions>
+                    <MudButton OnClick="() => Trail.Route.Add(new TrailDto.RouteInstruction())" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Add Instuction</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-auto" OnClick="@(async () => await Submit())">Add Trail</MudButton>
+        </MudCardActions>
     </FormSection>
 </MudForm>
-<MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@(async () => await Submit())">Order</MudButton>

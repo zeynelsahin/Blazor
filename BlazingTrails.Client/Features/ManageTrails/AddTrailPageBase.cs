@@ -1,5 +1,5 @@
 ﻿using BlazingTrails.Shared.Features.ManageTrails;
-using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using Severity = MudBlazor.Severity;
@@ -13,64 +13,35 @@ public class AddTrailPageBase : ComponentBase
         new BreadcrumbItem("Home", href: "/", icon: Icons.Material.Filled.Home),
         new BreadcrumbItem("Add Trail", href: "/#", icon: Icons.Material.Filled.Add, disabled: true),
     };
+
     [Inject] public ISnackbar Snackbar { get; set; }
+    [Inject] public IMediator Mediator { get; set; }
     protected MudForm form;
-    protected TrailFluentValidator TrailValidator = new TrailFluentValidator();
-    protected RouteInstructionFluentValidator RouteInstructionValidator = new RouteInstructionFluentValidator();
+    protected TrailDto.TrailValidator TrailValidator = new TrailDto.TrailValidator();
+    protected TrailDto.RouteInstructionValidator RouteInstructionValidator = new TrailDto.RouteInstructionValidator();
     protected TrailDto Trail = new TrailDto();
 
-
+    private string? ErrorMessage;
+    private bool SubmitSuccessful;
 
     protected async Task Submit()
     {
         await form.Validate();
         if (form.IsValid)
         {
-            Snackbar.Add("Trail Added!",Severity.Success);
+            var response = await Mediator.Send(new AddTrailRequest(Trail));
+            if (response.TrailId == -1)
+            {
+                ErrorMessage = "There was a problem saving your trail.";
+                SubmitSuccessful = false;
+                Snackbar.Add(ErrorMessage, Severity.Error);
+                return;
+            }
+
+            Trail = new TrailDto();
+            ErrorMessage = null;
+            SubmitSuccessful = true;
+            Snackbar.Add("Trail Added!", Severity.Success);
         }
     }
-
-    /// <summary>
-    /// A standard AbstractValidator which contains multiple rules and can be shared with the back end API
-    /// </summary>
-    /// <typeparam name="OrderModel"></typeparam>
-    public class TrailFluentValidator : AbstractValidator<TrailDto>
-    {
-        public TrailFluentValidator()
-        {
-            RuleFor(x => x.Name).NotEmpty();
-            RuleFor(x => x.Description).NotEmpty();
-            RuleFor(x => x.Location).NotEmpty();
-            RuleFor(x => x.Length).GreaterThan(0);
-            RuleFor(x => x.Route).NotEmpty();
-            RuleForEach(x => x.Route)
-                .SetValidator(new RouteInstructionFluentValidator());
-        }
-
-        public Func<object, string, Task<IEnumerable<string>>> ValidateValue => async (model, propertyName) =>
-        {
-            var result = await ValidateAsync(ValidationContext<TrailDto>.CreateWithOptions((TrailDto)model, x => x.IncludeProperties(propertyName)));
-            if (result.IsValid)
-                return Array.Empty<string>();
-            return result.Errors.Select(e => e.ErrorMessage);
-        };
-    }
-}
-
-public class RouteInstructionFluentValidator : AbstractValidator<TrailDto.RouteInstruction>
-{
-    public RouteInstructionFluentValidator()
-    {
-        RuleFor(x => x.Stage).NotEmpty();
-        RuleFor(x => x.Description).NotEmpty();
-    }
-
-    public Func<object, string, Task<IEnumerable<string>>> ValidateValue => async (model, propertyName) =>
-    {
-        var result = await ValidateAsync(ValidationContext<TrailDto.RouteInstruction>.CreateWithOptions((TrailDto.RouteInstruction)model, x => x.IncludeProperties(propertyName)));
-        if (result.IsValid)
-            return Array.Empty<string>();
-        return result.Errors.Select(e => e.ErrorMessage);
-    };
- 
 }
