@@ -1,4 +1,5 @@
 ﻿@page "/AddTrail"
+@using BlazingTrails.Shared.Features.ManageTrails.Shared
 @inherits AddTrailPageBase
 
 <MudBreadcrumbs Items="@Items"></MudBreadcrumbs>
@@ -19,7 +20,19 @@
                       For="@(() => Trail.Location)"
                       Immediate="true"
                       Label="Location"/>
+        <MudItem Class="pt-8">
+            @if (Image != null)
+            {
+                <MudText Class="pb-4" Typo="@Typo.h6">Image : @Image.Name</MudText>
+            }
+            <InputFile id="fileInput" OnChange="UploadFiles" hidden accept=".jpg, .jpeg, .png"/>
+            <MudFab HtmlTag="label"
+                    Color="Color.Secondary"
+                    Icon="@Icons.Filled.Image"
+                    Label="Load picture"
+                    for="fileInput"/>
 
+        </MudItem>
     </FormSection>
     <FormSection Title="Difficulty"
                  HelpText="This information is used to identity the trail and can be searched to help hikerns find it">
@@ -27,6 +40,7 @@
                       For="@(() => Trail.Length)"
                       Immediate="true"
                       Label="Lenght"/>
+        <InputTime Validator="TrailValidator" Trail="@Trail"></InputTime>
     </FormSection>
     <FormSection Title="Route Instructions"
                  HelpText="Route instructions are a guide for the trail. This helps hikers new to the trail stay on track.">
@@ -57,7 +71,7 @@
         }
 
         <MudCardActions>
-                    <MudButton OnClick="() => Trail.Route.Add(new TrailDto.RouteInstruction())" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Add Instuction</MudButton>
+            <MudButton OnClick="() => Trail.Route.Add(new TrailDto.RouteInstruction())" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Add Instuction</MudButton>
             <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-auto" OnClick="@(async () => await Submit())">Add Trail</MudButton>
         </MudCardActions>
     </FormSection>

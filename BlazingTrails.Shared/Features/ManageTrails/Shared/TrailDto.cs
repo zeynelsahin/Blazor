@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace BlazingTrails.Shared.Features.ManageTrails;
+namespace BlazingTrails.Shared.Features.ManageTrails.Shared;
 
 public class TrailDto
 {
@@ -26,6 +26,7 @@ public class TrailDto
             RuleFor(x => x.Location).NotEmpty();
             RuleFor(x => x.Length).GreaterThan(0);
             RuleFor(x => x.Route).NotEmpty();
+            RuleFor(x => x.TimeInMinutes).GreaterThan(0);
             RuleForEach(x => x.Route)
                 .SetValidator(new RouteInstructionValidator());
         }

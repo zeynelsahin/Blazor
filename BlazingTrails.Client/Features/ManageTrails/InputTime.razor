@@ -1,0 +1,11 @@
+﻿@inherits InputTimeBase
+  <MudGrid >
+      <MudItem xs="6" md="6" lg="6">
+                <MudTextField Variant="Variant.Text" @bind-Value="Trail.TimeInMinutes" Immediate="true" For="@(() => Trail.TimeInMinutes)" Label="Time"></MudTextField>
+      </MudItem>
+      <MudItem xs="6" md="6" lg="6">
+           <MudForm Model="@model" Validation="@(Validator.ValidateValue)" ValidationDelay="0">
+           <MudTextField Variant="Variant.Text" @bind-Value="model.TimeInMinutes" Immediate="true" For="@(() => Trail.TimeInMinutes)" Label="Minutes"></MudTextField>
+           </MudForm>
+      </MudItem>
+  </MudGrid>
