@@ -8,6 +8,10 @@
         <MudProgressCircular Color="Color.Tertiary" Size="Size.Large" Indeterminate="true"/>
     </MudPaper>
 }
+else if (!Trails.Any())
+{
+    <MudText Class="mt-16" Typo="Typo.h5" Align="Align.Center" GutterBottom="true">We currently don't have any trails, <MudLink Underline="Underline.Always" Color="Color.Tertiary" Href="/addtrail" Typo="Typo.h5">why not add one</MudLink></MudText>
+}
 else
 {
     <TrailDetail Trail="@_selectedTrail"></TrailDetail>

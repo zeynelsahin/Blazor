@@ -4,7 +4,7 @@
 
 <MudBreadcrumbs Items="Items"></MudBreadcrumbs>
 
-@if (SearchResult == null)
+@if (SearchResults == null)
 {
     <MudPaper Class="d-flex justify-center flex-grow-1 gap-4" Elevation="0">
         <MudProgressCircular Color="Color.Tertiary" Size="Size.Large" Indeterminate="true"/>
@@ -23,6 +23,6 @@ else
         <br/>
     </MudGrid>
     <MudGrid Spacing="3">
-        <DisplayTrails Trails="@SearchResult" OnSelected="HandleTrailSelected"></DisplayTrails>
+        <DisplayTrails Trails="@SearchResults" OnSelected="HandleTrailSelected"></DisplayTrails>
     </MudGrid>
 }

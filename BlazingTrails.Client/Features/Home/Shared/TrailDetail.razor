@@ -3,8 +3,16 @@
 {
     <MudDrawer @bind-Open="@Open" Width="500px" Anchor="Anchor" Elevation="3"  Variant="@DrawerVariant.Temporary">
         <MudCard Style="height: 100%" Elevation="4">
+            @if (string.IsNullOrEmpty(ActiveTrail.Image))
+                {
+                    <MudCardMedia class="img1" Image="@string.Concat("/images/noImage.jpg")" Height="300"/><br/>
 
-            <MudCardMedia class="img1" Image="@ActiveTrail.Image" Height="300"/><br/>
+                }
+                else
+                {
+                    <MudCardMedia class="img1" Image="@string.Concat("/images/",ActiveTrail.Image)" Height="300"/><br/>
+
+                }
             <MudCardContent>
                 <MudText Typo="Typo.h4">
                     @ActiveTrail.Name

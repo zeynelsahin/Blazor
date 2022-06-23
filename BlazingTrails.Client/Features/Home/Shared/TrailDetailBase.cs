@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace BlazingTrails.Client.Features.Home;
+namespace BlazingTrails.Client.Features.Home.Shared;
 
 public class TrailDetailBase: ComponentBase
 {
