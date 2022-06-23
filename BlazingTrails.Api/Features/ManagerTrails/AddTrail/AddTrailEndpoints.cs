@@ -38,7 +38,6 @@ public class AddTrailEndpoint : BaseAsyncEndpoint.WithRequest<AddTrailRequest>.W
 
         await _database.RouteInstructions.AddRangeAsync(routeInstructions, cancellationToken);
         await _database.SaveChangesAsync(cancellationToken);
-
         return Ok(trail.Id);
     }
 }

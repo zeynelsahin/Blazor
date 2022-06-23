@@ -1,4 +1,5 @@
-﻿using BlazingTrails.Shared.Features.ManageTrails.AddTrail;
+﻿using BlazingTrails.Client.Features.ManageTrails.Shared;
+using BlazingTrails.Shared.Features.ManageTrails.AddTrail;
 using BlazingTrails.Shared.Features.ManageTrails.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Components;
@@ -18,20 +19,14 @@ public class AddTrailPageBase : ComponentBase
 
     [Inject] public ISnackbar Snackbar { get; set; }
     [Inject] public IMediator Mediator { get; set; }
-    protected MudForm form;
-    protected readonly TrailDto.TrailValidator TrailValidator = new TrailDto.TrailValidator();
-    protected readonly TrailDto.RouteInstructionValidator RouteInstructionValidator = new TrailDto.RouteInstructionValidator();
-    protected TrailDto Trail = new TrailDto();
-
+    protected TrailForm TrailForm = default!;
+    
     private string? ErrorMessage;
     private bool SubmitSuccessful;
-    protected IBrowserFile? Image;
-    protected async Task Submit()
+    protected async Task Submit(TrailDto trail,IBrowserFile? image)
     {
-        await form.Validate();
-        if (form.IsValid)
-        {
-            var response = await Mediator.Send(new AddTrailRequest(Trail));
+      
+            var response = await Mediator.Send(new AddTrailRequest(trail));
             if (response.TrailId == -1)
             {
                 ErrorMessage = "There was a problem saving your trail.";
@@ -41,17 +36,22 @@ public class AddTrailPageBase : ComponentBase
                 return;
             }
 
-            if (Image is null)
+            if (image is null)
             {
                 SubmitSuccessful = true;
-                ResetForm();
+                TrailForm.ResetForm();
                 StateHasChanged();
                 return;
             }
             
-            SubmitSuccessful= await ProcessImage(response.TrailId,Image);
+            SubmitSuccessful= await ProcessImage(response.TrailId,image);
             Snackbar.Add("Trail Added!", Severity.Success);
-        }
+            if (SubmitSuccessful)
+            {
+                TrailForm.ResetForm();
+            }
+            StateHasChanged();
+        
     }
     private async Task<bool>ProcessImage(int trailId, IBrowserFile trailImage)
     {
@@ -65,17 +65,5 @@ public class AddTrailPageBase : ComponentBase
 
         return true;
     }
-    protected void UploadFiles(InputFileChangeEventArgs e)
-    {
-        Image = e.File;
-        Snackbar.Add(Image.Name +" Added", Severity.Info);
-        StateHasChanged();
-        
-    }
-    private void ResetForm()
-    {
-        Trail = new TrailDto();
-        ErrorMessage = null;
-        SubmitSuccessful = true;
-    }
+   
 } 

@@ -1,0 +1,93 @@
+﻿@inherits TrailFormBase
+
+
+<MudForm Model="@_trail" @ref="@form" Validation="@(TrailValidator.ValidateValue)" ValidationDelay="0">
+    <FormSection Title="Basic Details"
+                 HelpText="This information is used to identity the trail and can be searched to help hikerns find it">
+        <MudTextField @bind-Value="_trail.Name"
+                      For="@(() => _trail.Name)"
+                      Immediate="true"
+                      Label="Name"/>
+
+        <MudTextField @bind-Value="_trail.Description"
+                      For="@(() => _trail.Description)"
+                      Immediate="true"
+                      Label="Description" Lines="6"/>
+
+        <MudTextField @bind-Value="_trail.Location"
+                      For="@(() => _trail.Location)"
+                      Immediate="true"
+                      Label="Location"/>
+        <MudItem Class="pt-8">
+            @if (TrailImage != null)
+            {
+                <MudText Class="pb-4" Typo="@Typo.h6">Image : @TrailImage.Name</MudText>
+            }
+            @if (string.IsNullOrWhiteSpace(_trail.Image))
+            {
+                <InputFile id="fileInput" OnChange="UploadFiles" hidden accept=".jpg, .jpeg, .png"/>
+                <MudFab HtmlTag="label"
+                        Color="Color.Secondary"
+                        Icon="@Icons.Filled.Image"
+                        Label="Load picture"
+                        for="fileInput"/>
+            }
+            else
+            {
+                <MudImage Src="@string.Concat("Images/", _trail.Image)" Width="332" Height="250" Alt="@_trail.Name" Elevation="25" Class="rounded-lg ma-4"/>
+                <InputFile id="fileInput" OnChange="UploadFiles" hidden accept=".jpg, .jpeg, .png"/>
+                <MudButton OnClick="RemoveTrailImage">Remove Image</MudButton>
+            }
+
+        </MudItem>
+    </FormSection>
+    <FormSection Title="Difficulty"
+                 HelpText="This information is used to identity the trail and can be searched to help hikerns find it">
+        <MudTextField @bind-Value="_trail.Length"
+                      For="@(() => _trail.Length)"
+                      Immediate="true"
+                      Label="Lenght"/>
+        <InputTime Validator="TrailValidator" Trail="@_trail"></InputTime>
+    </FormSection>
+    <FormSection Title="Route Instructions"
+                 HelpText="Route instructions are a guide for the trail. This helps hikers new to the trail stay on track.">
+
+        @{ var i = 0; }
+        @foreach (var routeInstruction in _trail.Route)
+        {
+            i++;
+            routeInstruction.Stage = i;
+            <MudForm Model="@routeInstruction" Validation="@(RouteInstructionValidator.ValidateValue)" ValidationDelay="0">
+
+                <MudGrid>
+                    <MudItem xs="2" lg="1">
+                        <MudTextField @bind-Value="@routeInstruction.Stage" For="@(() => routeInstruction.Stage)" Label="Stage" ReadOnly="true" Variant="Variant.Text"/>
+                    </MudItem>
+                    <MudItem xs="8" lg="10">
+                        <MudTextField @bind-Value="@routeInstruction.Description"
+                                      For="@(() => @routeInstruction.Description)"
+                                      Immediate="true"
+                                      Label="Description">
+                        </MudTextField>
+                    </MudItem>
+                    <MudItem xs="2" lg="1">
+                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Large" OnClick="@(() => {if (_trail.Route.Count > 1){_trail.Route.Remove(routeInstruction); }})" aria-label="delete"></MudIconButton>
+                    </MudItem>
+                </MudGrid>
+            </MudForm>
+        }
+
+        <MudCardActions>
+            <MudButton OnClick="() => _trail.Route.Add(new TrailDto.RouteInstruction())" Variant="Variant.Filled" Color="Color.Success" Class="">Add Instuction</MudButton>
+            @if (Trail == null)
+            {
+                <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-auto" OnClick="@(async () => await SubmitForm())">Add Trail</MudButton>
+            }
+            else
+            {
+               <MudButton Variant="Variant.Filled" Color="Color.Success" Class="ml-auto" OnClick="@(async () => await SubmitForm())">Edit Trail</MudButton>
+            }
+         
+        </MudCardActions>
+    </FormSection>
+</MudForm>

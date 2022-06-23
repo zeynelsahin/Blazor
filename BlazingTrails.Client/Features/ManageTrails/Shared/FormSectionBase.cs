@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace BlazingTrails.Client.Features.ManageTrails;
+namespace BlazingTrails.Client.Features.ManageTrails.Shared;
 
 public class FormSectionBase: ComponentBase
 {

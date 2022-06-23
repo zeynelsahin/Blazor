@@ -1,0 +1,7 @@
+﻿@page "/edittrail/{TrailId:int}"
+ 
+@inherits EditTrailPageBase
+
+<MudBreadcrumbs Items="@Items"></MudBreadcrumbs>
+
+<TrailForm Trail="_trail" OnSubmit="Submit"></TrailForm>
