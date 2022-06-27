@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Shared", "Bla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Client", "BlazingTrails.Client\BlazingTrails.Client.csproj", "{1FD286BD-98DC-4E34-B4DE-F8EFD2BB9885}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.ComponentLibrary", "BlazingTrails.ComponentLibrary\BlazingTrails.ComponentLibrary.csproj", "{C635C761-5BC9-4241-B72C-FDEA96A6872A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deneme.ComponentLibrary", "Deneme.ComponentLibrary\Deneme.ComponentLibrary.csproj", "{916F9B3D-F912-49C3-9C25-EEA224BEC785}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +28,14 @@ Global
 		{1FD286BD-98DC-4E34-B4DE-F8EFD2BB9885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FD286BD-98DC-4E34-B4DE-F8EFD2BB9885}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FD286BD-98DC-4E34-B4DE-F8EFD2BB9885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C635C761-5BC9-4241-B72C-FDEA96A6872A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C635C761-5BC9-4241-B72C-FDEA96A6872A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C635C761-5BC9-4241-B72C-FDEA96A6872A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C635C761-5BC9-4241-B72C-FDEA96A6872A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{916F9B3D-F912-49C3-9C25-EEA224BEC785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{916F9B3D-F912-49C3-9C25-EEA224BEC785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{916F9B3D-F912-49C3-9C25-EEA224BEC785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{916F9B3D-F912-49C3-9C25-EEA224BEC785}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

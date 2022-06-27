@@ -1,0 +1,10 @@
+﻿@inherits ViewSwitcherBase
+
+@if (Mode == ViewMode.Grid)
+{
+    @GridTemplate
+}
+else if (Mode == ViewMode.Table)
+{
+    @TableTemplate
+}

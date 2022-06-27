@@ -1,0 +1,8 @@
+﻿@inherits ViewButtonsBase   
+<MudGrid>
+    <MudSpacer></MudSpacer>
+    <MudItem>
+        <MudIconButton Size="Size.Medium" OnClick="() => OnChange.InvokeAsync(ViewSwitcherBase.ViewMode.Grid)" Icon="@Icons.Sharp.GridView"></MudIconButton>
+        <MudIconButton Size="Size.Medium" Icon="@Icons.Sharp.TableRows" OnClick="() => OnChange.InvokeAsync(ViewSwitcherBase.ViewMode.Table)"></MudIconButton>
+    </MudItem>
+</MudGrid>

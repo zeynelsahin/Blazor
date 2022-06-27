@@ -14,11 +14,47 @@ else if (!Trails.Any())
 }
 else
 {
+    <Deneme45></Deneme45>
     <TrailDetail Trail="@_selectedTrail"></TrailDetail>
-    <TrailSearch></TrailSearch>
-    <MudGrid Spacing="3">
-        <DisplayTrails Trails="@Trails" OnSelected="HandleTrailSelected"></DisplayTrails>
-    </MudGrid>
+    <ViewSwitcher Mode="@Mode">
+        <GridTemplate>
+            <TrailSearch></TrailSearch>
+          <ViewButtons OnChange="HandleViewMode"></ViewButtons>
+            <MudGrid Spacing="3">
+                <DisplayTrails Trails="@Trails" OnSelected="HandleTrailSelected"></DisplayTrails>
+            </MudGrid>
+        </GridTemplate>
 
+        <TableTemplate>
+           <ViewButtons OnChange="HandleViewMode"></ViewButtons>
+            <MudTable Items="Trails" Dense="true" Hover="true" Bordered="false" Striped="true" Filter="new Func<Trail, bool>(FilterFunc1)">
+                <ToolBarContent>
+                    <MudText Typo="Typo.h6">Trails</MudText>
+                    <MudSpacer/>
+                    <MudTextField @bind-Value="searchString1" Immediate="true" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                </ToolBarContent>
+                <HeaderContent>
+                    <MudTh>Name</MudTh>
+                    <MudTh>Location</MudTh>
+                    <MudTh>Lenght</MudTh>
+                    <MudTh>Time</MudTh>
+                    <MudTh></MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Name">@context.Name</MudTd>
+                    <MudTd DataLabel="Location">@context.Location</MudTd>
+                    <MudTd DataLabel="Lenght">@context.Length</MudTd>
+                    <MudTd DataLabel="Time">@context.TimeInMinutes</MudTd>
+                    <MudTd>
+                        <MudIconButton Icon="@Icons.Material.Filled.Edit" Href="@string.Concat("/edittrail/", @context.Id)" Color="Color.Tertiary"/>
+                        <MudIconButton Icon="@Icons.Material.Filled.Expand" OnClick="@(() => HandleTrailSelected(@context))" Color="Color.Tertiary"/>
+                    </MudTd>
+                </RowTemplate>
+                <PagerContent>
+                    <MudTablePager/>
+                </PagerContent>
+            </MudTable>
+
+        </TableTemplate>
+    </ViewSwitcher>
 }
-

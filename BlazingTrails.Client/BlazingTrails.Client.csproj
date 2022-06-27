@@ -33,7 +33,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\BlazingTrails.ComponentLibrary\BlazingTrails.ComponentLibrary.csproj" />
       <ProjectReference Include="..\BlazingTrails.Shared\BlazingTrails.Shared.csproj" />
+      <ProjectReference Include="..\Deneme.ComponentLibrary\Deneme.ComponentLibrary.csproj" />
     </ItemGroup>
 
 </Project>

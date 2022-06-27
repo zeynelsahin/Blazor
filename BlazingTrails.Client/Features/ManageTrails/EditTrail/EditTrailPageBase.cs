@@ -12,7 +12,7 @@ public class EditTrailPageBase: ComponentBase
     protected readonly List<BreadcrumbItem> Items = new List<BreadcrumbItem>
     {
         new BreadcrumbItem("Home", href: "/", icon: Icons.Material.Filled.Home),
-        new BreadcrumbItem("Add Trail", href: "/#", icon: Icons.Material.Filled.Add, disabled: true),
+        new BreadcrumbItem("Edit Trail", href: "/#", icon: Icons.Material.Filled.Add, disabled: true),
     };
 
     private bool _submitSuccessful;

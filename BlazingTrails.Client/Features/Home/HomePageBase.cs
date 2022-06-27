@@ -1,5 +1,6 @@
-﻿using System.Net.Http.Json;
-using BlazingTrails.Client.Features.Home.Shared;
+﻿using BlazingTrails.Client.Features.Home.Shared;
+using BlazingTrails.ComponentLibrary;
+
 using BlazingTrails.Shared.Features.Home.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Components;
@@ -11,6 +12,21 @@ public class HomePageBase: ComponentBase
     [Inject] public IMediator Mediator { get; set; }
     protected IEnumerable<Trail>? Trails;
     protected Trail? _selectedTrail;
+    protected string searchString1 = "";
+    protected bool FilterFunc1(Trail trail) => FilterFunc(trail, searchString1);
+
+    protected ViewSwitcherBase.ViewMode Mode;
+
+    protected bool FilterFunc(Trail trail, string searchString)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return true;
+        if (trail.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (trail.Location.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        return false;
+    }
     protected override async Task OnInitializedAsync()
     {
         try
@@ -26,6 +42,7 @@ public class HomePageBase: ComponentBase
                 Length = x.Length,
                 TimeInMinutes = x.TimeInMinutes
             });
+
         }
         catch (Exception exception)
         {
@@ -44,4 +61,9 @@ public class HomePageBase: ComponentBase
     {
         _selectedTrail = trail;
     }
+    protected void HandleViewMode(ViewSwitcherBase.ViewMode mode)
+    {
+        Mode = mode;
+    }
+
 }
