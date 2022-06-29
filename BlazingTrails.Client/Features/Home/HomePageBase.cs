@@ -1,6 +1,5 @@
 ﻿using BlazingTrails.Client.Features.Home.Shared;
-using BlazingTrails.ComponentLibrary;
-
+using BlazingTrails.Shared.Features;
 using BlazingTrails.Shared.Features.Home.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Components;
@@ -15,7 +14,7 @@ public class HomePageBase: ComponentBase
     protected string searchString1 = "";
     protected bool FilterFunc1(Trail trail) => FilterFunc(trail, searchString1);
 
-    protected ViewSwitcherBase.ViewMode Mode;
+    protected Enums.ViewMode Mode;
 
     protected bool FilterFunc(Trail trail, string searchString)
     {
@@ -61,7 +60,7 @@ public class HomePageBase: ComponentBase
     {
         _selectedTrail = trail;
     }
-    protected void HandleViewMode(ViewSwitcherBase.ViewMode mode)
+    protected void HandleViewMode(Enums.ViewMode mode)
     {
         Mode = mode;
     }

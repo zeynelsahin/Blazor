@@ -1,0 +1,11 @@
+﻿@using BlazingTrails.Shared.Features
+@inherits ViewSwitcherBase
+
+@if (Mode == Enums.ViewMode.Grid)
+{
+    @GridTemplate
+}
+else if (Mode == Enums.ViewMode.Table)
+{
+    @TableTemplate
+}

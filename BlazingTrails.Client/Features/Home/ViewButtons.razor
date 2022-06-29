@@ -1,0 +1,9 @@
+﻿@using BlazingTrails.Shared.Features
+@inherits ViewButtonsBase   
+<MudGrid>
+    <MudSpacer></MudSpacer>
+    <MudItem>
+        <MudIconButton Size="Size.Medium" OnClick="() => OnChange.InvokeAsync(Enums.ViewMode.Grid)" Icon="@Icons.Sharp.GridView"></MudIconButton>
+        <MudIconButton Size="Size.Medium" Icon="@Icons.Sharp.TableRows" OnClick="() => OnChange.InvokeAsync(Enums.ViewMode.Table)"></MudIconButton>
+    </MudItem>
+</MudGrid>

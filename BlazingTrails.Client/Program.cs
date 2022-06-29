@@ -1,4 +1,5 @@
 using BlazingTrails.Client;
+using Blazored.LocalStorage;
 using MediatR;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -22,5 +23,4 @@ builder.Services.AddMudServices(configuration =>
     configuration.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
 });
 builder.Services.AddMediatR(typeof(Program).Assembly);
-
 await builder.Build().RunAsync();
