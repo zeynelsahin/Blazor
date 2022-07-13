@@ -1,0 +1,39 @@
+﻿@inherits DisplayTrailsBase
+@foreach (var trail in Trails)
+{
+    <MudItem xs="12" md="4" sm="6" lg="3">
+        <MudCard>
+            <MudLink Href="#" Underline="Underline.None" Color="Color.Inherit">
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <MudAvatar Color="Color.Tertiary">
+                            <MudIcon Icon="@Icons.Filled.LocationOn"></MudIcon>
+                        </MudAvatar>
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.body1">@trail.Name</MudText>
+                        <MudText Typo="Typo.body2">@trail.Location</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                @if (string.IsNullOrEmpty(trail.Image))
+                {
+                    <MudCardMedia class="img1" Image="/images/noImage.jpg" Height="250"/>
+                }
+                else
+                {
+                    <MudCardMedia class="img1" Image="@string.Concat("/images/", trail.Image)" Height="250"/>
+                }
+            </MudLink>
+            <MudCardContent>
+                <MudText Typo="Typo.body2">Time: @trail.TimeFormatted &nbsp;&nbsp;&nbsp; Lenght: @trail.Length km</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Error"/>
+                <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Tertiary"/>
+                <MudSpacer></MudSpacer>
+                <MudIconButton Icon="@Icons.Material.Filled.Edit" Href="@string.Concat("/edittrail/", trail.Id)" Color="Color.Tertiary"/>
+                <MudIconButton Icon="@Icons.Material.Filled.Expand" @onclick="@(() => OnSelected.InvokeAsync(trail))" Color="Color.Tertiary"/>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+}
